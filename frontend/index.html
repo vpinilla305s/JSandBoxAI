@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JSandBoxIA</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+
+    <div class="header">
+        <img src="img/logo.svg" alt="JSandBoxIA" width="200">
+        <div>
+            <button class="btn-run" onclick="correctSolution()">
+                <i class="fa-solid fa-user-check"></i> &nbsp;Corregir
+            </button>
+            <button class="btn-run" onclick="newExercise()">
+                <i class="fa-solid fa-pen-to-square"></i> &nbsp;Nuevo ejercicio
+            </button>
+        </div>
+    </div>
+
+    <div class="container">
+
+        <div class="editors-panel">
+            <div class="tabs">
+                <button class="tab active" onclick="switchTab('html')" style="color:#ff8c00">
+                    <i class="fa-brands fa-html5"></i> &nbsp;HTML
+                </button>
+                <button class="tab" onclick="switchTab('css')" style="color:#2196F3">
+                    <i class="fa-brands fa-css3-alt"></i> &nbsp;CSS
+                </button>
+                <button class="tab" onclick="switchTab('js')" style="color:#daa520">
+                    <i class="fa-brands fa-js"></i> &nbsp;JS
+                </button>
+                <button class="tab" onclick="switchTab('exercise')" style="color:#d20de4">
+                    <i class="fa-solid fa-align-left"></i> &nbsp;Enunciado
+                </button>
+            </div>
+            <div class="editor-container">
+                <div id="html-editor" class="editor active"></div>
+                <div id="css-editor" class="editor"></div>
+                <div id="js-editor" class="editor"></div>
+                <div id="exercise-panel" class="exercise-panel">
+                    <h2 id="exercise-panel-title"></h2>
+                    <p id="exercise-panel-description">Aquí iría el enunciado</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="resizer" id="resizer"></div>
+
+        <div class="preview-panel">
+            <iframe id="preview"></iframe>
+        </div>
+
+    </div>
+
+    <!-- Preview for create a new exercise -->
+    <div class="modal-overlay" id="modalOverlay">
+        <div class="modal">
+            <div class="modal-header">
+                <h2><i class="fa-solid fa-pen-to-square"></i> Nuevo Ejercicio</h2>
+                <button class="close-btn" onclick="closeModal()">
+                    <i class="fa-solid fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form id="exerciseForm">
+                    <div class="form-group">
+                        <label for="description">
+                            <i class="fa-solid fa-book"></i> Descripción
+                        </label>
+                        <textarea id="description" rows="3" placeholder="Describe qué quieres practicar, ej: eventos del DOM, flexbox, formularios..." required></textarea>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="level">
+                            <i class="fa-solid fa-signal"></i> Nivel de Dificultad
+                        </label>
+                        <select id="level" required>
+                            <option value="" selected disabled hidden>Selecciona un nivel...</option>
+                            <option value="easy">Fácil (conceptos básicos)</option>
+                            <option value="medium">Medio (combinación de conceptos)</option>
+                            <option value="hard">Difícil (mayor complejidad)</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-actions">
+                        <button type="submit" class="btn-primary">
+                            <i class="fa-solid fa-wand-magic-sparkles"></i> Generar Ejercicio
+                        </button>
+                    </div>
+                </form>
+                
+                <div id="loading" class="loading" style="display: none;">
+                    <i class="fa-solid fa-spinner fa-spin"></i>
+                    <p>Generando tu ejercicio personalizado...</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Preview of the generated exercise -->
+    <div class="modal-overlay" id="modalPreview">
+        <div class="modal">
+            <div class="modal-header">
+                <h2><i class="fa-solid fa-pen-to-square"></i> Nuevo ejercicio</h2>
+                <button class="close-btn" onclick="closePreview()">
+                    <i class="fa-solid fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <h3 id="exercise-title"></h3>
+                <p id="exercise-description"></p>
+                <div class="form-actions">
+                    <button class="btn-primary" onclick="createExercise()">
+                        <i class="fa-solid fa-play"></i> Empezar ejercicio
+                    </button>
+                    <button class="btn-secondary" onclick="regenerateExercise()">
+                        <i class="fa-solid fa-rotate"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.4.12/ace.js"></script>
+    <script src="js/main.js"></script>
+
+</body>
+</html>
