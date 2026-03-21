@@ -46,6 +46,11 @@ function switchTab(tab) {
         const tabIndex = tab === 'html' ? 1 : tab === 'css' ? 2 : 3;
         document.querySelector(`.tab:nth-child(${tabIndex})`).classList.add('active');
         document.getElementById(`${tab}-editor`).classList.add('active');
+
+        // Forzar el redibujado de Ace Editor cuando el contenedor vuelve a ser visible
+        if (tab === 'html') htmlEditor.resize();
+        if (tab === 'css') cssEditor.resize();
+        if (tab === 'js') jsEditor.resize();
     }
 }
 
@@ -138,7 +143,7 @@ document.getElementById('exerciseForm').addEventListener('submit', async functio
     e.preventDefault();
 
     const description = document.getElementById('description').value;
-    const dificulty   = document.getElementById('level').value;
+    const level   = document.getElementById('level').value;
 
     document.getElementById('exerciseForm').style.display = 'none';
     document.getElementById('loading').style.display = 'block';
@@ -147,7 +152,7 @@ document.getElementById('exerciseForm').addEventListener('submit', async functio
         const response = await fetch('/api/create-exercise', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ description, dificulty })
+            body: JSON.stringify({ description, level })
         });
 
         const data = await response.json();
@@ -177,9 +182,9 @@ function closePreview() {
     document.getElementById('modalPreview').classList.remove('active');
 }
 
-function newExercise() {
-    document.getElementById('description').value = '';
-    document.getElementById('level').value = '';
+function newExercise(description = '', level = '') {
+    document.getElementById('description').value = description;
+    document.getElementById('level').value = level;
     document.getElementById('modalOverlay').classList.add('active');
 }
 
@@ -191,13 +196,24 @@ function createExercise() {
     document.getElementById('exercise-panel-title').textContent = title;
     document.getElementById('exercise-panel-description').textContent = description;
 
+    // Vaciar los contenedores de código
+    htmlEditor.setValue('', -1);
+    cssEditor.setValue('', -1);
+    jsEditor.setValue('', -1);
+    runCode();
+
+    document.getElementById('btn-correct').disabled = false;
+
     closePreview();
     switchTab('exercise');
 }
 
 function regenerateExercise() {
     closePreview();
-    newExercise();
+
+    description = document.getElementById('description').value;
+    level = document.getElementById('level').value;
+    newExercise(description, level);
 }
 
 function correctSolution() {

@@ -43,6 +43,12 @@ body {
     background: #6F7FFF;
 }
 
+.btn-run:disabled {
+    background: #3e3e42;
+    color: #888;
+    cursor: not-allowed;
+}
+
 
 .container {
     display: flex;

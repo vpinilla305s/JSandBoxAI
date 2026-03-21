@@ -12,7 +12,7 @@
     <div class="header">
         <img src="img/logo.svg" alt="JSandBoxIA" width="200">
         <div>
-            <button class="btn-run" onclick="correctSolution()">
+            <button id="btn-correct" class="btn-run" onclick="correctSolution()" disabled>
                 <i class="fa-solid fa-user-check"></i> &nbsp;Corregir
             </button>
             <button class="btn-run" onclick="newExercise()">
@@ -74,7 +74,7 @@
                         </label>
                         <textarea id="description" rows="3" placeholder="Describe qué quieres practicar, ej: eventos del DOM, flexbox, formularios..." required></textarea>
                     </div>
-                    
+
                     <div class="form-group">
                         <label for="level">
                             <i class="fa-solid fa-signal"></i> Nivel de Dificultad
@@ -86,14 +86,14 @@
                             <option value="hard">Difícil (mayor complejidad)</option>
                         </select>
                     </div>
-                    
+
                     <div class="form-actions">
                         <button type="submit" class="btn-primary">
                             <i class="fa-solid fa-wand-magic-sparkles"></i> Generar Ejercicio
                         </button>
                     </div>
                 </form>
-                
+
                 <div id="loading" class="loading" style="display: none;">
                     <i class="fa-solid fa-spinner fa-spin"></i>
                     <p>Generando tu ejercicio personalizado...</p>
