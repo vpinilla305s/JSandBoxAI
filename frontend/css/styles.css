@@ -6,6 +6,8 @@
 
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    display: flex;
+    flex-direction: column;
     height: 100vh;
     overflow: hidden;
     background: #1e1e1e;
@@ -19,6 +21,13 @@ body {
     border-bottom: 2px solid #5667CC;
     display: flex;
     justify-content: space-between;
+    align-items: center;
+    flex-shrink: 0;
+}
+
+.header > div {
+    display: flex;
+    gap: 12px;
     align-items: center;
 }
 
@@ -88,7 +97,8 @@ body {
 
 .container {
     display: flex;
-    height: calc(100vh - 60px);
+    flex: 1;
+    min-height: 0;
 }
 
 
@@ -97,6 +107,7 @@ body {
     display: flex;
     flex-direction: column;
     min-width: 200px;
+    min-height: 0;
 }
 
 .resizer {
@@ -160,6 +171,7 @@ body {
 .editor-container {
     flex: 1;
     position: relative;
+    min-height: 0;
 }
 
 .editor {
@@ -207,6 +219,7 @@ body {
     display: flex;
     flex-direction: column;
     min-width: 200px;
+    min-height: 0;
 }
 
 .preview-header {

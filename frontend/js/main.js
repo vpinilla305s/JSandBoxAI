@@ -6,7 +6,8 @@ function customizeEditor(id, mode) {
         fontSize: '14px',
         showPrintMargin: false,
         enableBasicAutocompletion: true,
-        enableLiveAutocompletion: true
+        enableLiveAutocompletion: true,
+        scrollPastEnd: 0.1
     });
     return editor;
 }
