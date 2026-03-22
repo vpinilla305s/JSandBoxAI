@@ -49,9 +49,9 @@ function switchTab(tab) {
         document.getElementById(`${tab}-editor`).classList.add('active');
 
         // Forzar el redibujado de Ace Editor cuando el contenedor vuelve a ser visible
-        if (tab === 'html') htmlEditor.resize();
-        if (tab === 'css') cssEditor.resize();
-        if (tab === 'js') jsEditor.resize();
+        if (tab === 'html') { htmlEditor.resize(); htmlEditor.focus(); }
+        if (tab === 'css') { cssEditor.resize(); cssEditor.focus(); }
+        if (tab === 'js') { jsEditor.resize(); jsEditor.focus(); }
     }
 }
 
