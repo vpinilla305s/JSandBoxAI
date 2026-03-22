@@ -36,4 +36,5 @@ def create_exercise(exercise: RequestedExercise):
     return {
         "title": suggested_exercise.title,
         "description": suggested_exercise.statement,
+        "hints": suggested_exercise.hints,
     }

@@ -87,8 +87,10 @@ document.getElementById('modalOverlay').addEventListener('click', function (e) {
     if (e.target === this) closeModal();
 });
 
-document.addEventListener('keydown', function (e) {
-    if (e.key === 'Escape') closeModal();
+
+// Event listener for hint modal click
+document.getElementById('modalHints').addEventListener('click', function (e) {
+    if (e.target === this) closeHints();
 });
 
 
@@ -162,6 +164,7 @@ document.getElementById('exerciseForm').addEventListener('submit', async functio
 
         document.getElementById('modalPreview').dataset.title = data.title;
         document.getElementById('modalPreview').dataset.description = data.description;
+        currentHints = data.hints || [];
 
         closeModal();
         document.getElementById('modalPreview').classList.add('active');
@@ -203,6 +206,7 @@ function createExercise() {
     runCode();
 
     document.getElementById('btn-correct').disabled = false;
+    document.getElementById('btn-hints').disabled = false;
 
     closePreview();
     switchTab('exercise');
@@ -218,4 +222,43 @@ function regenerateExercise() {
 
 function correctSolution() {
     alert('La corrección automática se implementará próximamente.');
+}
+
+// Lógica de Pistas
+let currentHints = [];
+
+let currentHintIndex = 0;
+
+function showHints() {
+    if (currentHints.length === 0) {
+        alert('No hay pistas disponibles para este ejercicio.');
+        return;
+    }
+    currentHintIndex = 0;
+    updateHintModal();
+    document.getElementById('modalHints').classList.add('active');
+}
+
+function closeHints() {
+    document.getElementById('modalHints').classList.remove('active');
+}
+
+function updateHintModal() {
+    const title = document.getElementById('hint-modal-title');
+    const description = document.getElementById('hint-modal-description');
+    const btnPrev = document.getElementById('btn-prev-hint');
+    const btnNext = document.getElementById('btn-next-hint');
+
+    title.innerHTML = `<i class="fa-solid fa-lightbulb"></i> Pista ${currentHintIndex + 1}`;
+    description.textContent = currentHints[currentHintIndex];
+
+    btnPrev.disabled = currentHintIndex === 0;
+    btnNext.disabled = currentHintIndex === currentHints.length - 1;
+}
+
+function changeHint(direction) {
+    currentHintIndex += direction;
+    if (currentHintIndex < 0) currentHintIndex = 0;
+    if (currentHintIndex >= currentHints.length) currentHintIndex = currentHints.length - 1;
+    updateHintModal();
 }

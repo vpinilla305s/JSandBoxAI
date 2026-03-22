@@ -12,6 +12,9 @@
     <div class="header">
         <img src="img/logo.svg" alt="JSandBoxIA" width="200">
         <div>
+            <button id="btn-hints" class="btn-run" onclick="showHints()" disabled>
+                <i class="fa-solid fa-lightbulb"></i> &nbsp;Pistas
+            </button>
             <button id="btn-correct" class="btn-run" onclick="correctSolution()" disabled>
                 <i class="fa-solid fa-user-check"></i> &nbsp;Corregir
             </button>
@@ -120,6 +123,29 @@
                     </button>
                     <button class="btn-secondary" onclick="regenerateExercise()">
                         <i class="fa-solid fa-rotate"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Hints Modal -->
+    <div class="modal-overlay" id="modalHints">
+        <div class="modal">
+            <div class="modal-header">
+                <h2 id="hint-modal-title"><i class="fa-solid fa-lightbulb"></i> Pista 1</h2>
+                <button class="close-btn" onclick="closeHints()">
+                    <i class="fa-solid fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p id="hint-modal-description" style="font-size: 16px; margin-bottom: 20px;"></p>
+                <div class="form-actions" style="justify-content: space-between;">
+                    <button class="btn-secondary" id="btn-prev-hint" onclick="changeHint(-1)">
+                        <i class="fa-solid fa-arrow-left"></i> Anterior
+                    </button>
+                    <button class="btn-secondary" id="btn-next-hint" onclick="changeHint(1)">
+                        Siguiente <i class="fa-solid fa-arrow-right"></i>
                     </button>
                 </div>
             </div>

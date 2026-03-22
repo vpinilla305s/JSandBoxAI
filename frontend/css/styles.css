@@ -28,25 +28,61 @@ body {
 }
 
 .btn-run {
-    background: #5667CC;
-    color: white;
     border: none;
-    padding: 8px 20px;
-    border-radius: 4px;
+    padding: 10px 16px;
+    border-radius: 8px;
     cursor: pointer;
-    font-size: 14px;
-    font-weight: bold;
-    transition: background 0.3s;
+    font-size: 15px;
+    font-weight: 600;
+    transition: opacity 0.15s, transform 0.15s;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    line-height: 1;
+    gap: 6px;
+    font-family: inherit;
 }
 
-.btn-run:hover {
-    background: #6F7FFF;
+.btn-run i {
+    line-height: 1;
+    display: flex;
 }
 
-.btn-run:disabled {
-    background: #3e3e42;
-    color: #888;
+.btn-run:hover:not(:disabled) {
+    opacity: 0.8;
+    transform: translateY(-1px);
+}
+
+#btn-hints {
+    background: #d97706;
+    color: #fff;
+}
+
+#btn-hints:disabled {
+    background: rgba(217, 119, 6, 0.12);
+    color: #666;
     cursor: not-allowed;
+}
+
+#btn-correct {
+    background: #4E8748;
+    color: #fff;
+}
+
+#btn-correct:disabled {
+    background: rgba(78, 135, 72, 0.12);
+    color: #666;
+    cursor: not-allowed;
+}
+
+.header button:last-child {
+    background: #5667CC;
+    color: #fff;
+}
+
+.header button:last-child:hover {
+    opacity: 0.8;
+    transform: translateY(-1px);
 }
 
 
@@ -347,15 +383,23 @@ body {
     background: linear-gradient(135deg, #5667CC, #7B68EE);
     color: white;
     border: none;
-    padding: 12px 24px;
-    border-radius: 6px;
+    padding: 10px 16px;
+    border-radius: 8px;
     cursor: pointer;
     font-size: 15px;
     font-weight: 600;
     transition: all 0.3s;
-    display: flex;
+    display: inline-flex;
     align-items: center;
-    gap: 8px;
+    justify-content: center;
+    line-height: 1;
+    gap: 6px;
+    font-family: inherit;
+}
+
+.btn-primary i, .btn-secondary i {
+    line-height: 1;
+    display: flex;
 }
 
 .btn-primary:hover {
@@ -367,20 +411,30 @@ body {
     background: #3e3e42;
     color: white;
     border: 2px solid #5667CC;
-    padding: 12px 24px;
-    border-radius: 6px;
+    padding: 10px 16px;
+    border-radius: 8px;
     cursor: pointer;
     font-size: 15px;
     font-weight: 600;
     transition: all 0.3s;
-    display: flex;
+    display: inline-flex;
     align-items: center;
-    gap: 8px;
+    justify-content: center;
+    line-height: 1;
+    gap: 6px;
+    font-family: inherit;
 }
 
-.btn-secondary:hover {
+.btn-secondary:hover:not(:disabled) {
     background: #5667CC;
     transform: translateY(-2px);
+}
+
+.btn-secondary:disabled {
+    border-color: #3e3e42;
+    color: #888;
+    cursor: not-allowed;
+    opacity: 0.6;
 }
 
 .loading {
