@@ -1,6 +1,6 @@
 function saludar() {
   alert('¡Hola desde JavaScript!');
-  console.log('Botón clickeado');
+  console.log('Click hecho!');
 }
 
 console.log('JavaScript cargado correctamente');
