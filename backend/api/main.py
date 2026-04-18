@@ -9,7 +9,9 @@ from dotenv import load_dotenv
 from fastapi import FastAPI
 
 load_dotenv()
-API_KEY = os.getenv("API_KEY")
+LLM_MODEL = os.getenv("LLM_MODEL")
+API_BASE_URL = os.getenv("API_BASE_URL")
+LLM_API_KEY = os.getenv("LLM_API_KEY")
 
 
 BASE_DIR = Path(__file__).parent
@@ -21,7 +23,7 @@ app = FastAPI()
 
 @app.post("/api/create-exercise")
 def create_exercise(exercise: RequestedExercise):
-    llm_client = LLMClient(model="gpt-5.1-codex-mini", api_key=API_KEY)
+    llm_client = LLMClient(model=LLM_MODEL, api_base=API_BASE_URL, api_key=LLM_API_KEY)
 
     create_exercise_user = Template(CREATE_EXERCISE_USER).safe_substitute(exercise.model_dump())
 
@@ -33,8 +35,6 @@ def create_exercise(exercise: RequestedExercise):
     response = llm_client.llm_response_json(messages)
     suggested_exercise = SuggestedExercise(**response)
 
-    return {
-        "title": suggested_exercise.title,
-        "description": suggested_exercise.statement,
-        "hints": suggested_exercise.hints,
-    }
+    return suggested_exercise
+
+
