@@ -161,11 +161,14 @@ document.getElementById('exerciseForm').addEventListener('submit', async functio
         const data = await response.json();
 
         document.getElementById('exercise-title').textContent = data.title;
-        document.getElementById('exercise-description').textContent = data.description;
+        document.getElementById('exercise-statement').textContent = data.statement;
 
         document.getElementById('modalPreview').dataset.title = data.title;
-        document.getElementById('modalPreview').dataset.description = data.description;
+        document.getElementById('modalPreview').dataset.statement = data.statement;
+        
         currentHints = data.hints || [];
+        currentRequirements = data.requirements || [];
+        currentExerciseStatement = data.statement;
 
         closeModal();
         document.getElementById('modalPreview').classList.add('active');
@@ -195,10 +198,10 @@ function newExercise(description = '', level = '') {
 function createExercise() {
     const modal = document.getElementById('modalPreview');
     const title = modal.dataset.title;
-    const description = modal.dataset.description;
+    const statement = modal.dataset.statement;
 
     document.getElementById('exercise-panel-title').textContent = title;
-    document.getElementById('exercise-panel-description').textContent = description;
+    document.getElementById('exercise-panel-statement').textContent = statement;
 
     // Vaciar los contenedores de código
     htmlEditor.setValue('', -1);
@@ -227,8 +230,9 @@ function correctSolution() {
 
 // Lógica de Pistas
 let currentHints = [];
-
 let currentHintIndex = 0;
+let currentExerciseStatement = '';
+let currentRequirements = [];
 
 function showHints() {
     if (currentHints.length === 0) {
