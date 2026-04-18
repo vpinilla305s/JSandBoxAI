@@ -1,11 +1,11 @@
 services:
-
   backend:
     build: ./backend
     ports:
       - "8000:8000"
     volumes:
       - ./backend:/app
+    restart: unless-stopped
 
   frontend:
     build: ./frontend
@@ -15,3 +15,4 @@ services:
       - ./frontend:/usr/share/nginx/html
     depends_on:
       - backend
+    restart: unless-stopped
