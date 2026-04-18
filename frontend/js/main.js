@@ -89,9 +89,12 @@ document.getElementById('modalOverlay').addEventListener('click', function (e) {
 });
 
 
-// Event listener for hint modal click
 document.getElementById('modalHints').addEventListener('click', function (e) {
     if (e.target === this) closeHints();
+});
+
+document.getElementById('modalCorrection').addEventListener('click', function (e) {
+    if (e.target === this) closeCorrection();
 });
 
 
@@ -155,7 +158,10 @@ document.getElementById('exerciseForm').addEventListener('submit', async functio
         const response = await fetch('/api/create-exercise', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ description, level })
+            body: JSON.stringify({
+                description: description,
+                level: level
+            })
         });
 
         const data = await response.json();
@@ -165,7 +171,7 @@ document.getElementById('exerciseForm').addEventListener('submit', async functio
 
         document.getElementById('modalPreview').dataset.title = data.title;
         document.getElementById('modalPreview').dataset.statement = data.statement;
-        
+
         currentHints = data.hints || [];
         currentRequirements = data.requirements || [];
         currentExerciseStatement = data.statement;
@@ -224,11 +230,58 @@ function regenerateExercise() {
     newExercise(description, level);
 }
 
-function correctSolution() {
-    alert('La corrección automática se implementará próximamente.');
+async function correctSolution() {
+    document.getElementById('correction-loading').style.display = 'block';
+    document.getElementById('correction-passed').style.display = 'none';
+    document.getElementById('correction-failed').style.display = 'none';
+    document.getElementById('correction-unmet-section').style.display = 'none';
+    document.getElementById('modalCorrection').classList.add('active');
+
+    try {
+        const response = await fetch('/api/correct-exercise', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+                html: htmlEditor.getValue(),
+                css: cssEditor.getValue(),
+                js: jsEditor.getValue(),
+                statement: currentExerciseStatement,
+                requirements: currentRequirements
+            })
+        });
+
+        const data = await response.json();
+
+        document.getElementById('correction-loading').style.display = 'none';
+
+        if (data.passed) {
+            document.getElementById('correction-passed-summary').textContent = data.summary;
+            document.getElementById('correction-passed').style.display = 'block';
+        } else {
+            const unmetRequirements = data.unmet_requirements || [];
+            document.getElementById('correction-failed-summary').textContent = data.summary;
+            document.getElementById('correction-feedback').textContent = data.feedback;
+
+            if (unmetRequirements.length > 0) {
+                document.getElementById('correction-unmet-list').innerHTML = unmetRequirements.map(r => `<li>${r}</li>`).join('');
+                document.getElementById('correction-unmet-section').style.display = 'block';
+            }
+
+            document.getElementById('correction-failed').style.display = 'block';
+        }
+
+    } catch (error) {
+        document.getElementById('correction-loading').style.display = 'none';
+        document.getElementById('correction-failed-summary').textContent = '';
+        document.getElementById('correction-feedback').textContent = `Error al conectar con el servidor: ${error.message}`;
+        document.getElementById('correction-failed').style.display = 'block';
+    }
 }
 
-// Lógica de Pistas
+function closeCorrection() {
+    document.getElementById('modalCorrection').classList.remove('active');
+}
+
 let currentHints = [];
 let currentHintIndex = 0;
 let currentExerciseStatement = '';

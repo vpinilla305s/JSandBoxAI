@@ -25,3 +25,18 @@ class SuggestedExercise(BaseModel):
             raise ValueError("Las listas no pueden contener elementos vacíos.")
 
         return cleaned
+
+
+class SubmittedSolution(BaseModel):
+    html: str
+    css: str
+    js: str
+    statement: str
+    requirements: list[str]
+
+
+class CorrectedExercise(BaseModel):
+    passed: bool
+    summary: str
+    unmet_requirements: list[str]
+    feedback: str

@@ -152,6 +152,46 @@
         </div>
     </div>
 
+    <!-- Correction Modal -->
+    <div class="modal-overlay" id="modalCorrection">
+        <div class="modal">
+            <div class="modal-header">
+                <h2><i class="fa-solid fa-user-check"></i> Corrección</h2>
+                <button class="close-btn" onclick="closeCorrection()">
+                    <i class="fa-solid fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div id="correction-loading" class="loading">
+                    <i class="fa-solid fa-spinner fa-spin"></i>
+                    <p>Corrigiendo la solución...</p>
+                </div>
+
+                <!-- Result: passed -->
+                <div id="correction-passed" style="display: none;">
+                    <div class="correction-status passed">
+                        <i class="fa-solid fa-circle-check"></i> ¡Excelente!
+                    </div>
+                    <p id="correction-passed-summary" class="correction-summary"></p>
+                </div>
+
+                <!-- Result: not passed -->
+                <div id="correction-failed" style="display: none;">
+                    <div class="correction-status">Sigue intentándolo...</div>
+                    <p id="correction-failed-summary" class="correction-summary"></p>
+                    <div class="correction-section">
+                        <strong>Feedback</strong>
+                        <p id="correction-feedback"></p>
+                    </div>
+                    <div id="correction-unmet-section" class="correction-section" style="display: none;">
+                        <strong>Requisitos no cumplidos</strong>
+                        <ul id="correction-unmet-list" class="unmet-requirements"></ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.4.12/ace.js"></script>
     <script src="js/main.js"></script>
 
