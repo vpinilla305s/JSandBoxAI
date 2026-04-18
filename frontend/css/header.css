@@ -1,0 +1,78 @@
+.header {
+    background: #2d2d30;
+    padding: 15px 20px;
+    border-bottom: 2px solid #5667CC;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-shrink: 0;
+}
+
+.header > div {
+    display: flex;
+    gap: 12px;
+    align-items: center;
+}
+
+.header h1 {
+    font-size: 20px;
+    color: #5667CC;
+}
+
+.btn-run {
+    border: none;
+    padding: 10px 16px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 15px;
+    font-weight: 600;
+    transition: opacity 0.15s, transform 0.15s;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    line-height: 1;
+    gap: 6px;
+    font-family: inherit;
+}
+
+.btn-run i {
+    line-height: 1;
+    display: flex;
+}
+
+.btn-run:hover:not(:disabled) {
+    opacity: 0.8;
+    transform: translateY(-1px);
+}
+
+#btn-hints {
+    background: #d97706;
+    color: #fff;
+}
+
+#btn-hints:disabled {
+    background: rgba(217, 119, 6, 0.12);
+    color: #666;
+    cursor: not-allowed;
+}
+
+#btn-correct {
+    background: #4E8748;
+    color: #fff;
+}
+
+#btn-correct:disabled {
+    background: rgba(78, 135, 72, 0.12);
+    color: #666;
+    cursor: not-allowed;
+}
+
+.header button:last-child {
+    background: #5667CC;
+    color: #fff;
+}
+
+.header button:last-child:hover {
+    opacity: 0.8;
+    transform: translateY(-1px);
+}

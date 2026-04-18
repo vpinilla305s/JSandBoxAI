@@ -1,0 +1,151 @@
+.form-group {
+    margin-bottom: 25px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 8px;
+    color: #fff;
+    font-size: 17px;
+    font-weight: 600;
+}
+
+.form-group label i {
+    margin-right: 6px;
+    color: #5667CC;
+}
+
+.form-group textarea {
+    width: 100%;
+    padding: 12px;
+    background: #1e1e1e;
+    border: 2px solid #3e3e42;
+    border-radius: 6px;
+    color: #fff;
+    font-size: 15px;
+    font-family: inherit;
+    resize: vertical;
+    transition: all 0.3s;
+}
+
+.form-group textarea:hover {
+    border-color: #5667CC;
+}
+
+.form-group textarea:focus {
+    outline: none;
+    border-color: #5667CC;
+    box-shadow: 0 0 0 3px rgba(86, 103, 204, 0.2);
+}
+
+.form-group select {
+    width: 100%;
+    padding: 12px;
+    background: #1e1e1e;
+    border: 2px solid #3e3e42;
+    border-radius: 6px;
+    color: #fff;
+    font-size: 15px;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.form-group select:hover {
+    border-color: #5667CC;
+}
+
+.form-group select:focus {
+    outline: none;
+    border-color: #5667CC;
+    box-shadow: 0 0 0 3px rgba(86, 103, 204, 0.2);
+}
+
+.form-group option {
+    padding: 10px;
+}
+
+.form-group optgroup {
+    font-weight: bold;
+    color: #5667CC;
+}
+
+.form-actions {
+    display: flex;
+    gap: 12px;
+    justify-content: flex-end;
+    margin-top: 30px;
+}
+
+.btn-primary {
+    background: linear-gradient(135deg, #5667CC, #7B68EE);
+    color: white;
+    border: none;
+    padding: 10px 16px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 15px;
+    font-weight: 600;
+    transition: all 0.3s;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    line-height: 1;
+    gap: 6px;
+    font-family: inherit;
+}
+
+.btn-primary i, .btn-secondary i {
+    line-height: 1;
+    display: flex;
+}
+
+.btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(86, 103, 204, 0.4);
+}
+
+.btn-secondary {
+    background: #3e3e42;
+    color: white;
+    border: 2px solid #5667CC;
+    padding: 10px 16px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 15px;
+    font-weight: 600;
+    transition: all 0.3s;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    line-height: 1;
+    gap: 6px;
+    font-family: inherit;
+}
+
+.btn-secondary:hover:not(:disabled) {
+    background: #5667CC;
+    transform: translateY(-2px);
+}
+
+.btn-secondary:disabled {
+    border-color: #3e3e42;
+    color: #888;
+    cursor: not-allowed;
+    opacity: 0.6;
+}
+
+.loading {
+    text-align: center;
+    padding: 40px 20px;
+}
+
+.loading i {
+    font-size: 48px;
+    color: #5667CC;
+    margin-bottom: 20px;
+}
+
+.loading p {
+    color: #aaa;
+    font-size: 16px;
+}

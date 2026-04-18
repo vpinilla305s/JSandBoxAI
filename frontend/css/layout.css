@@ -1,0 +1,140 @@
+.container {
+    display: flex;
+    flex: 1;
+    min-height: 0;
+}
+
+
+.editors-panel {
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    min-width: 200px;
+    min-height: 0;
+}
+
+.resizer {
+    width: 12px;
+    background: #2d2d30;
+    cursor: col-resize;
+    position: relative;
+    transition: background 0.2s;
+}
+
+.resizer:hover {
+    background: #4a4a4d;
+}
+
+.resizer::before {
+    content: '';
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 2px;
+    height: 40px;
+    background: #5667CC;
+    border-radius: 2px;
+}
+
+.resizer:hover::before {
+    background: #fff;
+}
+
+
+.tabs {
+    display: flex;
+    background: #2d2d30;
+    border-bottom: 1px solid #3e3e42;
+}
+
+.tab {
+    padding: 12px 20px;
+    cursor: pointer;
+    background: #2d2d30;
+    color: #aaa;
+    border: none;
+    border-right: 1px solid #3e3e42;
+    font-size: 14px;
+    transition: all 0.3s;
+}
+
+.tab:hover {
+    background: #3e3e42;
+    color: #fff;
+}
+
+.tab.active {
+    background: #1e1e1e;
+    color: #fff;
+    border-bottom: 2px solid #5667CC;
+}
+
+
+.editor-container {
+    flex: 1;
+    position: relative;
+    min-height: 0;
+}
+
+.editor {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: none;
+}
+
+.editor.active {
+    display: block;
+}
+
+
+.exercise-panel {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: none;
+    background: #1e1e1e;
+    padding: 30px;
+    overflow-y: auto;
+    color: #fff;
+    font-size: 16px;
+    line-height: 1.6;
+}
+
+.exercise-panel.active {
+    display: block;
+}
+
+.exercise-panel h2 {
+    color: #d20de4;
+    margin-bottom: 12px;
+}
+
+
+.preview-panel {
+    flex: 1;
+    background: white;
+    display: flex;
+    flex-direction: column;
+    min-width: 200px;
+    min-height: 0;
+}
+
+.preview-header {
+    background: #2d2d30;
+    padding: 12px 20px;
+    border-bottom: 1px solid #3e3e42;
+    font-size: 14px;
+    color: #aaa;
+}
+
+#preview {
+    flex: 1;
+    border: none;
+    background: white;
+}
