@@ -1,4 +1,4 @@
-# JSandBoxIA
+# JSandBoxAI
 Una plataforma web interactiva diseñada para practicar desarrollo web mediante ejercicios generados automáticamente. El usuario puede escribir y probar código HTML, CSS y JavaScript en tiempo real mientras un sistema de inteligencia artificial genera enunciados, evalúa las soluciones y ofrece retroalimentación para guiar el aprendizaje.
 
 
