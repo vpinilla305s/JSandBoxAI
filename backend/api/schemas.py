@@ -22,7 +22,7 @@ class SuggestedExercise(BaseModel):
         cleaned = [item.strip() for item in value]
 
         if any(not item for item in cleaned):
-            raise ValueError("Las listas no pueden contener elementos vacíos.")
+            raise ValueError("Lists cannot contain empty elements.")
 
         return cleaned
 
