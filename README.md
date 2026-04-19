@@ -15,9 +15,9 @@ Una plataforma web interactiva diseñada para practicar desarrollo web mediante 
 │   │   │   │   └── user/
 │   │   │   │       ├── create_exercise.md   # Prompt de usuario para generar ejercicios
 │   │   │   │       └── correct_exercise.md  # Prompt de usuario para corregir soluciones
-│   │   │   ├── client.py    # Cliente LLM genérico basado en LiteLLM
-│   │   │   └── schemas.py   # Modelos Pydantic de entrada/salida de la API
+│   │   │   └── client.py    # Cliente LLM genérico basado en LiteLLM
 │   │   ├── main.py          # API REST con FastAPI (endpoints)
+│   │   │   schemas.py       # Modelos Pydantic de entrada/salida de la API
 │   │   └── utils.py
 │   └── Dockerfile
 ├── frontend/

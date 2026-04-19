@@ -3,7 +3,7 @@ from pathlib import Path
 from string import Template
 
 from api.llm.client import LLMClient
-from api.llm.schemas import (
+from api.schemas import (
     CorrectedExercise,
     RequestedExercise,
     SubmittedSolution,
