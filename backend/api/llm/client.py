@@ -86,7 +86,7 @@ class LLMClient:
             JSON dictionary contained in the LLM response.
         """
         if "{" not in llm_response or "}" not in llm_response:
-            raise ReponseFormatError("GPT output is not a dictionary.", response=llm_response)
+            raise ResponseFormatError("GPT output is not a dictionary.", response=llm_response)
 
         from_ = llm_response.index("{")
         to = llm_response.rindex("}") + 1
@@ -94,10 +94,10 @@ class LLMClient:
         try:
             return json.loads(json_candidate)
         except Exception:
-            raise ReponseFormatError("GPT output is not a well structured dictionary", response=llm_response)
+            raise ResponseFormatError("GPT output is not a well structured dictionary", response=llm_response)
 
 
-class ReponseFormatError(Exception):
+class ResponseFormatError(Exception):
     """Exception raised to indicate a formatting error in the LLM response."""
 
     def __init__(self, message: str, response: str) -> None:
