@@ -1,4 +1,4 @@
-function customizeEditor(id, mode) {
+function initEditor(id, mode) {
     const editor = ace.edit(id);
     editor.setTheme('ace/theme/monokai');
     editor.session.setMode(mode);
@@ -12,9 +12,9 @@ function customizeEditor(id, mode) {
     return editor;
 }
 
-const htmlEditor = customizeEditor('html-editor', 'ace/mode/html');
-const cssEditor = customizeEditor('css-editor', 'ace/mode/css');
-const jsEditor = customizeEditor('js-editor', 'ace/mode/javascript');
+const htmlEditor = initEditor('html-editor', 'ace/mode/html');
+const cssEditor = initEditor('css-editor', 'ace/mode/css');
+const jsEditor = initEditor('js-editor', 'ace/mode/javascript');
 
 
 Promise.all([
@@ -80,12 +80,12 @@ function runCode() {
     iframeDoc.close();
 }
 
-function closeModal() {
-    document.getElementById('modalOverlay').classList.remove('active');
+function closeExercise() {
+    document.getElementById('modalExercise').classList.remove('active');
 }
 
-document.getElementById('modalOverlay').addEventListener('click', function (e) {
-    if (e.target === this) closeModal();
+document.getElementById('modalExercise').addEventListener('click', function (e) {
+    if (e.target === this) closeExercise();
 });
 
 
@@ -176,12 +176,12 @@ document.getElementById('exerciseForm').addEventListener('submit', async functio
         currentRequirements = data.requirements || [];
         currentExerciseStatement = data.statement;
 
-        closeModal();
+        closeExercise();
         document.getElementById('modalPreview').classList.add('active');
 
     } catch (error) {
         document.getElementById('exercise-panel').innerHTML = `<p style="color:red">Error al conectar con el servidor: ${error.message}</p>`;
-        closeModal();
+        closeExercise();
         switchTab('exercise');
     } finally {
         // Restore the modal for next time
@@ -198,7 +198,7 @@ function closePreview() {
 function newExercise(description = '', level = '') {
     document.getElementById('description').value = description;
     document.getElementById('level').value = level;
-    document.getElementById('modalOverlay').classList.add('active');
+    document.getElementById('modalExercise').classList.add('active');
 }
 
 function createExercise() {
